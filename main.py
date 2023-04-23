@@ -40,13 +40,15 @@ with mp_pose.Pose(
     else:
       frameNum = frameNum + 1
       print("Person detected - frame " + str(frameNum))
-      for i in range(50):
-          print("Flashing - " + str(i))
-          GPIO.output(ledPIN, True)
-          time.sleep(0.1)
-          GPIO.output(ledPIN, False)
-          time.sleep(0.1)
-      print("Done with flashing")
+      if frameNum > 5:
+          for i in range(50):
+              print("Flashing - " + str(i))
+              GPIO.output(ledPIN, True)
+              time.sleep(0.05)
+              GPIO.output(ledPIN, False)
+              time.sleep(0.05)
+          print("Done with flashing")
+          frameNum = 0
 
     # Draw the pose annotation on the image.
     image.flags.writeable = True
