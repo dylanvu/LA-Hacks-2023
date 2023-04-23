@@ -1,3 +1,4 @@
+#dog
 import cv2
 import mediapipe as mp
 import numpy as np
@@ -10,6 +11,7 @@ with mp_pose.Pose(
     min_detection_confidence=0.5,
     min_tracking_confidence=0.5) as pose:
   print("Ready to begin capture")
+  frameNum = 0
   while cap.isOpened():
     success, image = cap.read()
     if not success:
@@ -26,6 +28,10 @@ with mp_pose.Pose(
     # determine if there are any landmarks, meaning that there are people present
     if results.pose_landmarks is None:
       print("No landmarks found")
+      frameNum = 0
+    else:
+      frameNum = frameNum + 1
+      print("Person detected - frame " + str(frameNum))
 
     # Draw the pose annotation on the image.
     image.flags.writeable = True
