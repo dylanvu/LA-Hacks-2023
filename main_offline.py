@@ -4,7 +4,7 @@ import mediapipe as mp
 import numpy as np
 import RPi.GPIO as GPIO
 import time
-import socketio
+# import socketio
 
 
 GPIO.setmode(GPIO.BOARD)
