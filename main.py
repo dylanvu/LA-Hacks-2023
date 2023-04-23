@@ -8,7 +8,7 @@ import socketio
 
 
 GPIO.setmode(GPIO.BOARD)
-# ledPIN = 11
+ledPIN = 11
 # this is 11 = GPIO17
 GPIO.setup(ledPIN, GPIO.OUT)
 
