@@ -2,6 +2,14 @@
 import cv2
 import mediapipe as mp
 import numpy as np
+import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BOARD)
+ledPIN = 11
+# this is 11 = GPIO17
+GPIO.setup(ledPIN, GPIO.OUT)
+
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
@@ -32,6 +40,13 @@ with mp_pose.Pose(
     else:
       frameNum = frameNum + 1
       print("Person detected - frame " + str(frameNum))
+      for i in range(50):
+          print("Flashing - " + str(i))
+          GPIO.output(ledPIN, True)
+          time.sleep(0.1)
+          GPIO.output(ledPIN, False)
+          time.sleep(0.1)
+      print("Done with flashing")
 
     # Draw the pose annotation on the image.
     image.flags.writeable = True
@@ -47,3 +62,4 @@ with mp_pose.Pose(
     #   break
 
 cap.release()
+GPIO.cleanup()
