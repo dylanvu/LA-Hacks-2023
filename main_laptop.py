@@ -2,15 +2,15 @@
 import cv2
 import mediapipe as mp
 import numpy as np
-import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 import time
 import socketio
 
 
-GPIO.setmode(GPIO.BOARD)
+# GPIO.setmode(GPIO.BOARD)
 # ledPIN = 11
 # this is 11 = GPIO17
-GPIO.setup(ledPIN, GPIO.OUT)
+# GPIO.setup(ledPIN, GPIO.OUT)
 
 serverURL = 'https://distinctwarlikerefactoring.caseytran4.repl.co/'
 
@@ -57,10 +57,10 @@ def connect():
         if frameNum > 5:
             for i in range(50):
                 print("Flashing on - " + str(i))
-                GPIO.output(ledPIN, True)
+                # GPIO.output(ledPIN, True)
                 time.sleep(0.05)
                 print("Flashing off - " + str(i))
-                GPIO.output(ledPIN, False)
+                # GPIO.output(ledPIN, False)
                 time.sleep(0.05)
             print("Done with flashing")
             frameNum = 0
@@ -82,7 +82,7 @@ def connect():
         break
 
   cap.release()
-  GPIO.cleanup()
+  # GPIO.cleanup()
   quit()
 
 @sio.on("Status: ")
